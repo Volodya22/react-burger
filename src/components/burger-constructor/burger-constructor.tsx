@@ -1,8 +1,13 @@
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components"
 import bunImg from '../../images/bun.png'
 import styles from './burger-constructor.module.scss'
+import { BurgerConstructorTotal } from "./burger-constructor-total/burger-constructor-total"
+import Modal from "../modals/modal/modal"
+import useModal from "../../hooks/use-modal"
 
 export const BurgerConstructor = (props: any) => {
+  const { isOpen, toggle } = useModal(); 
+  
   return (
     <div style={{ marginLeft: 16 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: 100 }}>
@@ -39,15 +44,10 @@ export const BurgerConstructor = (props: any) => {
           />
         </div>
       </div>
-      <div className={styles.price}>
-        <div className={styles.priceValue}>
-          <p className="text text_type_digits-medium pr-2">610</p>
-          <CurrencyIcon type="primary" />
-        </div>
-        <Button htmlType="button" type="primary" size="large">
-          Нажми на меня
-        </Button>
-      </div>
+      <BurgerConstructorTotal onClick={toggle} />
+      <Modal wrapperId="order-modal" isOpen={isOpen} toggle={toggle}>
+
+      </Modal>
     </div>
   )
 }

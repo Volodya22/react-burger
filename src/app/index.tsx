@@ -12,6 +12,7 @@ export const App = () => {
 		fetch(ApiUrl)
 			.then(x => x.json())
 			.then(x => setData(x.data))
+			.catch(x => console.log(x))
 	}, [])
 
 	return (

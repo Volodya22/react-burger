@@ -3,7 +3,7 @@ import styles from './burger-ingredient-item.module.scss'
 
 export const BurgerIngredientItem = (props: any) => {
   return (
-    <div className={styles.itemContainer}>
+    <div className={styles.itemContainer} onClick={props.onClick}>
       <div className={styles.imageContainer}>
         <img src={props.image} />
       </div>
