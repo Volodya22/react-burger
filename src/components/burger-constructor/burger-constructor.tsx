@@ -17,7 +17,7 @@ export const BurgerConstructor = (props: any) => {
         </div>
         <div className={styles.items}>
         {
-          props.data && props.data.map((x: any) => (
+          props.data && props.data.length > 0 && props.data.map((x: any) => (
             <div className={styles.item}>
               <DragIcon className="pr-2" type="primary" />
               <ConstructorElement

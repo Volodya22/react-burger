@@ -34,7 +34,7 @@ export const BurgerIngredients = (props: any) => {
         </Tab>
       </div>
       <div className={styles.tab}>
-        { props.data && groups.map(x => (
+        { props.data && props.data.length > 0 && groups.map(x => (
           <BurgerIngredientTab items={props.data.filter((c: any) => c.type === x.type)} name={x.name} />
         ))}        
       </div>
