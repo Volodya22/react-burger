@@ -1,16 +1,12 @@
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components"
 import bunImg from '../../images/bun.png'
-import sauceImg from '../../images/sauce.png'
-import meatImg from '../../images/meat.png'
-import spImg from '../../images/sp.png'
-import ringsImg from '../../images/rings.png'
 import styles from './burger-constructor.module.scss'
 
-export const BurgerConstructor = () => {
+export const BurgerConstructor = (props: any) => {
   return (
-    <>
+    <div style={{ marginLeft: 16 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: 100 }}>
-        <div className="ml-8">
+        <div className="ml-8 mr-4">
           <ConstructorElement
             type="top"
             isLocked={true}
@@ -19,47 +15,21 @@ export const BurgerConstructor = () => {
             thumbnail={bunImg}
           />
         </div>
-        <div className={styles.item}>
-          <DragIcon className="pr-2" type="primary" />
-          <ConstructorElement
-            text="Соус традиционный галактический"
-            price={30}
-            thumbnail={sauceImg}
-          />
-        </div>
-        <div className={styles.item}>
-          <DragIcon className="pr-2" type="primary" />
-          <ConstructorElement
-            text="Мясо бессмертных моллюсков Protostomia"
-            price={300}
-            thumbnail={meatImg}
-          />
-        </div>
-        <div className={styles.item}>
-          <DragIcon className="pr-2" type="primary" />
-          <ConstructorElement
-            text="Плоды Фалленианского дерева"
-            price={80}
-            thumbnail={spImg}
-          />
-        </div>
-        <div className={styles.item}>
-          <DragIcon className="pr-2" type="primary" />
-          <ConstructorElement
-            text="Хрустящие минеральные кольца"
-            price={80}
-            thumbnail={ringsImg}
-          />
-        </div>
-        <div className={styles.item}>
-          <DragIcon className="pr-2" type="primary" />
-          <ConstructorElement
-            text="Хрустящие минеральные кольца"
-            price={80}
-            thumbnail={ringsImg}
-          />
-        </div>
-        <div className="ml-8">
+        <div className={styles.items}>
+        {
+          props.data && props.data.map((x: any) => (
+            <div className={styles.item}>
+              <DragIcon className="pr-2" type="primary" />
+              <ConstructorElement
+                text={x.name}
+                price={x.price}
+                thumbnail={x.image}
+              />
+            </div>
+          ))
+        }
+        </div>        
+        <div className="ml-8 mr-4">
           <ConstructorElement
             type="bottom"
             isLocked={true}
@@ -78,6 +48,6 @@ export const BurgerConstructor = () => {
           Нажми на меня
         </Button>
       </div>
-    </>
+    </div>
   )
 }

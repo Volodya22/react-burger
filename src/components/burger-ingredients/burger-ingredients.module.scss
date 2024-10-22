@@ -6,4 +6,7 @@
 .tab {
   display: flex;
   flex-flow: column;
+  max-height: 50vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }

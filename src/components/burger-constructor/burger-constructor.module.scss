@@ -15,4 +15,11 @@
 .item {
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
+}
+
+.items {
+  max-height: 50vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }

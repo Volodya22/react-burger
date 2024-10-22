@@ -2,9 +2,8 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components"
 import React from "react"
 import styles from './burger-ingredients.module.scss'
 import { BurgerIngredientTab } from './burger-ingredient-tab/burger-ingredient-tab'
-import { data } from '../../utils/data'
 
-export const BurgerIngredients = () => {
+export const BurgerIngredients = (props: any) => {
   const [current, setCurrent] = React.useState('buns')
 
   const groups = [{
@@ -35,8 +34,8 @@ export const BurgerIngredients = () => {
         </Tab>
       </div>
       <div className={styles.tab}>
-        { data && groups.map(x => (
-          <BurgerIngredientTab items={data.filter(c => c.type === x.type)} name={x.name} />
+        { props.data && groups.map(x => (
+          <BurgerIngredientTab items={props.data.filter((c: any) => c.type === x.type)} name={x.name} />
         ))}        
       </div>
     </div>
