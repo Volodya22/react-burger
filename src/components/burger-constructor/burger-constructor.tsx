@@ -1,9 +1,9 @@
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components"
-import bunImg from '../../app/assets/bun.png'
-import sauceImg from '../../app/assets/sauce.png'
-import meatImg from '../../app/assets/meat.png'
-import spImg from '../../app/assets/sp.png'
-import ringsImg from '../../app/assets/rings.png'
+import bunImg from '../../images/bun.png'
+import sauceImg from '../../images/sauce.png'
+import meatImg from '../../images/meat.png'
+import spImg from '../../images/sp.png'
+import ringsImg from '../../images/rings.png'
 import styles from './burger-constructor.module.scss'
 
 export const BurgerConstructor = () => {
