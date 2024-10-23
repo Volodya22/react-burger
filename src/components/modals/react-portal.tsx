@@ -1,10 +1,6 @@
 import { useState, useLayoutEffect, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-
-type ReactPortalProps = {
-  children?: ReactNode,
-  wrapperId: string
-}
+import { ReactPortalProps } from '../../models';
 
 export default function ReactPortal(props: ReactPortalProps) {
   const [wrapperElement, setWrapperElement] = useState<Element | null>(null);

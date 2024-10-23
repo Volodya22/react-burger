@@ -1,7 +1,7 @@
 import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './burger-constructor-total.module.scss'
 
-export const BurgerConstructorTotal = (props: any) => {
+export const BurgerConstructorTotal = (props: { onClick: () => void }) => {
   return (
     <div className={styles.price}>
       <div className={styles.priceValue}>
@@ -9,7 +9,7 @@ export const BurgerConstructorTotal = (props: any) => {
         <CurrencyIcon type="primary" />
       </div>
       <Button htmlType="button" type="primary" size="large" onClick={props.onClick}>
-        Нажми на меня
+        Оформить заказ
       </Button>
     </div>
   );

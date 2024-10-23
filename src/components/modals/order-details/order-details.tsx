@@ -1,10 +1,10 @@
-import styles from './burger-constructor-modal.module.scss'
+import styles from './order-details.module.scss'
 import layer1 from '../../../images/Vector 1.svg'
 import layer2 from '../../../images/Vector 2.svg'
 import layer3 from '../../../images/Vector 3.svg'
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
-export const BurgerConstructorModal = () => {
+export const OrderDetails = () => {
   return (
     <div className={styles.orderData}>
       <p className={styles.bigText}>034536</p>

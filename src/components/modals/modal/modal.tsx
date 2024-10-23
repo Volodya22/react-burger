@@ -14,7 +14,7 @@ type ReactPortalProps = {
 
 export default function Modal(props: ReactPortalProps) {
   useEffect(() => {
-    const closeOnEscapeKey = (e: any) => e.key === "Escape" && props.isOpen ? props.toggle() : null;
+    const closeOnEscapeKey = (e: KeyboardEvent) => e.key === "Escape" && props.isOpen ? props.toggle() : null;
     
     document.body.addEventListener("keydown", closeOnEscapeKey);
 
