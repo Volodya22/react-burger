@@ -7,7 +7,7 @@ export const AppHeader = () => {
       <div className={styles.container}>
         <Button className={styles.btn} htmlType="button" type="secondary" size="large">
           <BurgerIcon className={styles.icon} type="primary" />
-          Нажми на меня
+          Конструктор
         </Button>
         <Button className={styles.btn} htmlType="button" type="secondary" size="large">
           <ListIcon className={styles.icon} type="primary" />
