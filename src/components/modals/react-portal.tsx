@@ -14,4 +14,4 @@ export default function ReactPortal(props: ReactPortalProps) {
   if (wrapperElement === null) return null;
 
   return createPortal(props.children, wrapperElement);
-}
+};

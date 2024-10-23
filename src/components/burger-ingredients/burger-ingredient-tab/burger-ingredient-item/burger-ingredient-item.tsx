@@ -18,4 +18,4 @@ export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
       { props.item.price % 5 === 0 && <Counter count={1} size="default" extraClass="m-1" /> }
     </div>
   );
-}
+};

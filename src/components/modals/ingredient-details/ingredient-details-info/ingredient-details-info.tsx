@@ -8,4 +8,4 @@ export const IngredientDetailsInfo = (props: IngredientDetailsInfoProps) => {
       <p className={styles.itemValue}>{props.value}</p>
     </div>
   );
-}
+};

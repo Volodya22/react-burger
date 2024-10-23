@@ -16,4 +16,4 @@ export const IngredientDetails = (props: { item: BurgerIngredient }) => {
       </div>
     </div>
   );
-}
+};

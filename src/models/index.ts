@@ -40,3 +40,8 @@ export type IngredientDetailsInfoProps = {
   type: string;
   value: number;
 }
+
+export type IngredientTab = {
+  name: string;
+  type: string;
+};

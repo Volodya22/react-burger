@@ -5,7 +5,7 @@ import { BurgerIngredientTab } from './burger-ingredient-tab/burger-ingredient-t
 import Modal from "../modals/modal/modal"
 import useModal from "../../hooks/use-modal"
 import { IngredientDetails } from "../modals/ingredient-details/ingredient-details"
-import { BurgerIngredient } from "../../models"
+import { BurgerIngredient, IngredientTab } from "../../models"
 
 export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
   const [current, setCurrent] = React.useState<string>('buns');
@@ -17,7 +17,7 @@ export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
     toggle();
   }, [setCurrentItem, toggle]);
 
-  const groups = [{
+  const groups: IngredientTab[] = [{
     name: "Булки",
     type: "bun",
   }, {
@@ -54,4 +54,4 @@ export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
       </Modal>
     </div>
   )
-}
+};

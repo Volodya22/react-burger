@@ -7,26 +7,26 @@ import { BurgerIngredient } from '../../models';
 const ApiUrl: string = "https://norma.nomoreparties.space/api/ingredients";
 
 export const App = () => {
-	const [data, setData] = useState<BurgerIngredient[]>([])
+  const [data, setData] = useState<BurgerIngredient[]>([]);
 
-	useEffect(() => {
-		fetch(ApiUrl)
-			.then(x => x.json())
-			.then(x => setData(x.data))
-			.catch(x => console.log(x))
-	}, [])
+  useEffect(() => {
+    fetch(ApiUrl)
+      .then(x => x.json())
+      .then(x => setData(x.data))
+      .catch(x => console.log(x));
+  }, [])
 
-	return (
-		<div className='page'>
-			<AppHeader />
-			<main style={{ display: 'flex', gap: 40 }}>
-				<div>
-					<BurgerIngredients data={data} />
-				</div>
-				<div>
-					<BurgerConstructor data={data.filter(x => x.type !== 'bun')} />
-				</div>
-			</main>
-		</div>
-	);
+  return (
+    <div className='page'>
+      <AppHeader />
+      <main style={{ display: 'flex', gap: 40 }}>
+        <div>
+          <BurgerIngredients data={data} />
+        </div>
+        <div>
+          <BurgerConstructor data={data.filter(x => x.type !== 'bun')} />
+        </div>
+      </main>
+    </div>
+  );
 };

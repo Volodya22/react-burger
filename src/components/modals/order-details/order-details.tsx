@@ -19,4 +19,4 @@ export const OrderDetails = () => {
       <p className={styles.bottomTextBlue}>Доджитесь готовности на орбитальной станции</p>
     </div>
   )
-}
+};

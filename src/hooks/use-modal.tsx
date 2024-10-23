@@ -11,4 +11,4 @@ export default function useModal() {
     isOpen,
     toggle
   };
-}
+};

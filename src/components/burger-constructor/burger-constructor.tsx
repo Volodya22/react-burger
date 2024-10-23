@@ -52,4 +52,4 @@ export const BurgerConstructor = (props: { data: BurgerIngredient[] }) => {
       </Modal>
     </div>
   )
-}
+};
