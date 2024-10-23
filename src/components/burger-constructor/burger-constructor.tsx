@@ -4,6 +4,7 @@ import styles from './burger-constructor.module.scss'
 import { BurgerConstructorTotal } from "./burger-constructor-total/burger-constructor-total"
 import Modal from "../modals/modal/modal"
 import useModal from "../../hooks/use-modal"
+import { BurgerConstructorModal } from "./burger-constructor-modal/burger-constructor-modal"
 
 export const BurgerConstructor = (props: any) => {
   const { isOpen, toggle } = useModal(); 
@@ -23,7 +24,7 @@ export const BurgerConstructor = (props: any) => {
         <div className={styles.items}>
         {
           props.data && props.data.length > 0 && props.data.map((x: any) => (
-            <div className={styles.item}>
+            <div key={x._id} className={styles.item}>
               <DragIcon className="pr-2" type="primary" />
               <ConstructorElement
                 text={x.name}
@@ -46,7 +47,7 @@ export const BurgerConstructor = (props: any) => {
       </div>
       <BurgerConstructorTotal onClick={toggle} />
       <Modal wrapperId="order-modal" isOpen={isOpen} toggle={toggle}>
-
+        <BurgerConstructorModal />
       </Modal>
     </div>
   )

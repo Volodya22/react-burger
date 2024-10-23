@@ -4,10 +4,12 @@ import styles from './burger-ingredients.module.scss'
 import { BurgerIngredientTab } from './burger-ingredient-tab/burger-ingredient-tab'
 import Modal from "../modals/modal/modal"
 import useModal from "../../hooks/use-modal"
+import { BurgerIngredientModal } from "./burger-ingredient-modal/burger-ingredient-modal"
 
 export const BurgerIngredients = (props: any) => {
   const [current, setCurrent] = React.useState('buns');
-  const { isOpen, toggle } = useModal(); 
+  const [currentItem, setCurrentItem] = React.useState<any>(null);
+  const { isOpen, toggle } = useModal();
 
   const groups = [{
     name: "Булки",
@@ -38,11 +40,11 @@ export const BurgerIngredients = (props: any) => {
       </div>
       <div className={styles.tab}>
         { props.data && props.data.length > 0 && groups.map(x => (
-          <BurgerIngredientTab items={props.data.filter((c: any) => c.type === x.type)} name={x.name} onClick={toggle} />
+          <BurgerIngredientTab key={x.name} items={props.data.filter((c: any) => c.type === x.type)} name={x.name} onClick={toggle} select={setCurrentItem} />
         ))}        
       </div>
       <Modal wrapperId="item-modal" isOpen={isOpen} title="Детали ингредиета" toggle={toggle}>
-
+        <BurgerIngredientModal {...currentItem} />
       </Modal>
     </div>
   )

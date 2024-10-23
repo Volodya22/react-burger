@@ -1,6 +1,8 @@
 import { ReactNode, useEffect } from "react";
 import styles from "./modal.module.scss";
 import ReactPortal from "../react-portal";
+import { ModalOverlay } from "../modal-overlay/modal-overlay";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 type ReactPortalProps = {
   wrapperId: string,
@@ -12,8 +14,8 @@ type ReactPortalProps = {
 
 export default function Modal(props: ReactPortalProps) {
   useEffect(() => {
-    const closeOnEscapeKey = (e: any) => e.key === "Escape" ? props.toggle() : null;
-
+    const closeOnEscapeKey = (e: any) => e.key === "Escape" && props.isOpen ? props.toggle() : null;
+    
     document.body.addEventListener("keydown", closeOnEscapeKey);
 
     return () => {
@@ -25,12 +27,16 @@ export default function Modal(props: ReactPortalProps) {
 
   return (
     <ReactPortal wrapperId={props.wrapperId}>
-      <div className={styles.modal}>
-        <button onClick={props.toggle} className="close-btn">
-          Close
-        </button>
-        <div className={styles.modalContent}>{props.children}</div>
-      </div>
+      <ModalOverlay onClick={props.toggle}>
+        <div className={styles.modalContent}>
+          <div className={styles.side}>
+            <CloseIcon type="primary" onClick={props.toggle} />
+          </div>
+          <div className={styles.content}>
+            {props.children}
+          </div>
+        </div>
+      </ModalOverlay>
     </ReactPortal>
   );
 };
