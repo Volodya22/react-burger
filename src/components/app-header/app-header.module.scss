@@ -1,0 +1,39 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -40px;
+}
+
+.container {
+  flex-shrink: 0;
+  display: flex;
+  min-width: 500px;
+}
+
+.containerRight {
+  composes: container;
+  flex-direction: row-reverse;
+}
+
+.logo {
+  flex-grow: 1;
+  align-self: center;
+  display: flex;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  margin: 32px 0;
+
+  a {
+    display: flex;
+    color: white;
+  }
+}
