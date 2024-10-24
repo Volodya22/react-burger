@@ -10,3 +10,8 @@
 .itemType, .itemValue {
   text-align: center;
 }
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+}

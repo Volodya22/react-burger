@@ -25,3 +25,8 @@
   display: flex;
   justify-content: center;
 }
+
+.nameText {
+  composes: text text_type_main-default from global;
+  text-align: center;
+}

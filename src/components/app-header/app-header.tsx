@@ -3,7 +3,7 @@ import styles from './app-header.module.scss'
 
 export const AppHeader = () => {
   return (
-    <nav className={styles.nav}>
+    <header className={styles.nav}>
       <div className={styles.container}>
         <Button className={styles.btn} htmlType="button" type="secondary" size="large">
           <BurgerIcon className={styles.icon} type="primary" />
@@ -21,6 +21,6 @@ export const AppHeader = () => {
         <ProfileIcon className={styles.icon} type="primary" />
         Личный кабинет
       </Button>
-    </nav>
+    </header>
   )
 }

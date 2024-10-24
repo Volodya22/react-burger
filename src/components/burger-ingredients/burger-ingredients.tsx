@@ -29,11 +29,11 @@ export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
   }];
 
   return (
-    <div style={{ width: 600 }}>
+    <div className={styles.ingredientContainer}>
       <div className={styles.header}>
-        <p style={{ margin: 0 }} className="text text_type_main-large">Соберите бургер</p>
+        <p className="text text_type_main-large">Соберите бургер</p>
       </div>
-      <div style={{ display: 'flex' }}>
+      <div className={styles.tabContainer}>
         <Tab value="buns" active={current === 'buns'} onClick={setCurrent}>
           Булки
         </Tab>
@@ -49,7 +49,7 @@ export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
           <BurgerIngredientTab key={x.name} items={props.data.filter(c => c.type === x.type)} name={x.name} onSelect={selectItem} />
         ))}        
       </div>
-      <Modal wrapperId="item-modal" isOpen={isOpen} title="Детали ингредиета" toggle={toggle}>
+      <Modal wrapperId="modals" isOpen={isOpen} title="Детали ингредиета" toggle={toggle}>
         { currentItem && <IngredientDetails item={currentItem} /> }
       </Modal>
     </div>

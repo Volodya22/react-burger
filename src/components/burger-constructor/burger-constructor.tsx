@@ -11,8 +11,8 @@ export const BurgerConstructor = (props: { data: BurgerIngredient[] }) => {
   const { isOpen, toggle } = useModal(); 
   
   return (
-    <div style={{ marginLeft: 16 }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: 100 }}>
+    <div className="ml-4">
+      <div className={styles.constructorContainer}>
         <div className="ml-8 mr-4">
           <ConstructorElement
             type="top"
@@ -47,7 +47,7 @@ export const BurgerConstructor = (props: { data: BurgerIngredient[] }) => {
         </div>
       </div>
       <BurgerConstructorTotal onClick={toggle} />
-      <Modal wrapperId="order-modal" isOpen={isOpen} toggle={toggle}>
+      <Modal wrapperId="modals" isOpen={isOpen} toggle={toggle}>
         <OrderDetails />
       </Modal>
     </div>

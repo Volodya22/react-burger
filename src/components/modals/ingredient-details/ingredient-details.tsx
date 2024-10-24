@@ -6,7 +6,7 @@ export const IngredientDetails = (props: { item: BurgerIngredient }) => {
   return (
     <div className={styles.itemData}>
       <p className={styles.title}>Детали ингредиета</p>
-      <img src={props.item.image_large} className={styles.image} />
+      <img src={props.item.image_large} className={styles.image} alt={props.item.name} />
       <p className={styles.itemName}>{props.item.name}</p>
       <div className={styles.info}>
         <IngredientDetailsInfo type="Калории, ккал" value={props.item.calories} />
