@@ -1,12 +1,18 @@
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0 -40px;
 }
 
 .container {
   flex-shrink: 0;
   display: flex;
+  min-width: 500px;
+}
+
+.containerRight {
+  composes: container;
+  flex-direction: row-reverse;
 }
 
 .logo {
@@ -15,15 +21,19 @@
   display: flex;
 }
 
-.btn {
-  composes: button button_type_secondary button_size_large from global;
-  display: flex;
-  align-items: center;
-  margin: 16px 0;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-
 .icon {
   margin-right: 8px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  margin: 32px 0;
+
+  a {
+    display: flex;
+    color: white;
+  }
 }

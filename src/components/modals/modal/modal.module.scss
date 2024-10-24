@@ -6,6 +6,10 @@
   display: flex;
   flex-flow: row-reverse;
   border-radius: 40px;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .side {

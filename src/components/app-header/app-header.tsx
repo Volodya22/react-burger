@@ -5,22 +5,30 @@ export const AppHeader = () => {
   return (
     <header className={styles.nav}>
       <div className={styles.container}>
-        <Button className={styles.btn} htmlType="button" type="secondary" size="large">
-          <BurgerIcon className={styles.icon} type="primary" />
-          Конструктор
-        </Button>
-        <Button className={styles.btn} htmlType="button" type="secondary" size="large">
-          <ListIcon className={styles.icon} type="primary" />
-          Лента заказов
-        </Button>
+        <div className={styles.link}>
+          <a href="#">
+            <BurgerIcon className={styles.icon} type="primary" />
+            <span className="text text_type_main-default">Конструктор</span>
+          </a>
+        </div>
+        <div className={styles.link}>
+          <a href="#">
+            <ListIcon className={styles.icon} type="secondary" />
+            <span className="text text_type_main-default text_color_inactive">Лента заказов</span>
+          </a>
+        </div>
       </div>
       <div className={styles.logo}>
         <Logo />
       </div>
-      <Button className={styles.btn} htmlType="button" type="secondary" size="large">
-        <ProfileIcon className={styles.icon} type="primary" />
-        Личный кабинет
-      </Button>
+      <div className={styles.containerRight}>
+        <div className={styles.link}>
+          <a href="#">
+            <ProfileIcon className={styles.icon} type="secondary" />
+            <span className="text text_type_main-default text_color_inactive">Личный кабинет</span>
+          </a>
+        </div>
+      </div>
     </header>
   )
 }
