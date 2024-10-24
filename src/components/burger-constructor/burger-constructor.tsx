@@ -47,9 +47,12 @@ export const BurgerConstructor = (props: { data: BurgerIngredient[] }) => {
         </div>
       </div>
       <BurgerConstructorTotal onClick={toggle} />
-      <Modal wrapperId="modals" isOpen={isOpen} toggle={toggle}>
-        <OrderDetails />
-      </Modal>
+      {
+        isOpen &&
+        <Modal wrapperId="modals" toggle={toggle}>
+          <OrderDetails />
+        </Modal>
+      }      
     </div>
   )
 };

@@ -5,6 +5,10 @@ export type ReactPortalProps = {
   wrapperId: string
 }
 
+export type ModalProps = {
+  toggle: () => void
+} & ReactPortalProps
+
 export type BurgerIngredient = {
   calories: number;
   carbohydrates: number;

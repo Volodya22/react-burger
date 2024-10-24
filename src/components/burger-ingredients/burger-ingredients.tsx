@@ -49,9 +49,12 @@ export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
           <BurgerIngredientTab key={x.name} items={props.data.filter(c => c.type === x.type)} name={x.name} onSelect={selectItem} />
         ))}        
       </div>
-      <Modal wrapperId="modals" isOpen={isOpen} title="Детали ингредиета" toggle={toggle}>
-        { currentItem && <IngredientDetails item={currentItem} /> }
-      </Modal>
+      {
+        isOpen &&
+        <Modal wrapperId="modals" toggle={toggle}>
+          { currentItem && <IngredientDetails item={currentItem} /> }
+        </Modal>
+      }      
     </div>
   )
 };

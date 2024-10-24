@@ -3,18 +3,11 @@ import styles from "./modal.module.scss";
 import ReactPortal from "../react-portal";
 import { ModalOverlay } from "../modal-overlay/modal-overlay";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ModalProps } from "../../../models";
 
-type ReactPortalProps = {
-  wrapperId: string,
-  title?: string,
-  children?: ReactNode,
-  isOpen: boolean,
-  toggle: () => void
-}
-
-export default function Modal(props: ReactPortalProps) {
+export default function Modal(props: ModalProps) {
   useEffect(() => {
-    const closeOnEscapeKey = (e: KeyboardEvent) => e.key === "Escape" && props.isOpen ? props.toggle() : null;
+    const closeOnEscapeKey = (e: KeyboardEvent) => e.key === "Escape" ? props.toggle() : null;
     
     document.body.addEventListener("keydown", closeOnEscapeKey);
 
@@ -22,8 +15,6 @@ export default function Modal(props: ReactPortalProps) {
       document.body.removeEventListener("keydown", closeOnEscapeKey);
     };
   }, [props.toggle]);
-
-  if (!props.isOpen) return null;
 
   return (
     <ReactPortal wrapperId={props.wrapperId}>
