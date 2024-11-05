@@ -1,5 +1,5 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
-import { IngredientsState, BurgerIngredient, ConstructorBurgerIngredient } from "../../models";
+import { IngredientsState, BurgerIngredient, ConstructorBurgerIngredient, MoveItemInfo } from "../../models";
 import { getIngredients } from "./actions";
 
 const initialState: IngredientsState = {
@@ -43,8 +43,10 @@ export const ingredientsSlice = createSlice({
     deleteIngredient: (state, action: PayloadAction<ConstructorBurgerIngredient>) => {
       state.constructorIngredients.ingredients = state.constructorIngredients.ingredients.filter(x => x.itemId !== action.payload.itemId);
     },
-    moveIngredient: () => {
-
+    moveIngredient: (state, action: PayloadAction<MoveItemInfo>) => {
+      const temp = state.constructorIngredients.ingredients[action.payload.fromIndex];
+      state.constructorIngredients.ingredients[action.payload.fromIndex] = state.constructorIngredients.ingredients[action.payload.toIndex];
+      state.constructorIngredients.ingredients[action.payload.toIndex] = temp;
     },
     clearConstructor: (state) => {
       state.constructorIngredients = {
@@ -81,4 +83,4 @@ export const ingredientsSlice = createSlice({
 
 export const { getAllIngredients, getSelectedItem, getBun, getConstructorIngredients, getConstructorData, isDataLoading, getOrderItemIds } = ingredientsSlice.selectors;
 
-export const { selectIngredient, addIngredient, deleteIngredient, clearConstructor } = ingredientsSlice.actions;
+export const { selectIngredient, addIngredient, deleteIngredient, clearConstructor, moveIngredient } = ingredientsSlice.actions;

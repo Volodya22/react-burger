@@ -4,8 +4,10 @@ const ApiUrl: string = "https://norma.nomoreparties.space/api/";
 
 export const getIngredientsData = async (): Promise<BurgerIngredient[]> => {
   try {
-    var data = await fetch(`${ApiUrl}ingredients`);
-    return (await data.json()).data as BurgerIngredient[];
+    const data = await fetch(`${ApiUrl}ingredients`);
+    const result = await data.json();
+
+    return result.success ? result.data as BurgerIngredient[] : [];
   } catch (e) {
     console.error(e);
     return [];
@@ -14,12 +16,14 @@ export const getIngredientsData = async (): Promise<BurgerIngredient[]> => {
 
 export const createNewOrder = async (request: OrderRequest): Promise<Order | null> => {
   try {
-    var data = await fetch(`${ApiUrl}orders`, {
+    const data = await fetch(`${ApiUrl}orders`, {
       method: "POST",
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(request)
     });
+    const result = await data.json();
 
-    return (await data.json()) as Order;
+    return result.success ? result as Order : null;
   } catch (e) {
     console.error(e);
     return null;

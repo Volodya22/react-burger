@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../../../services/store";
 import { useCallback } from "react";
 import { getOrderItemIds, selectIngredient } from "../../../../services/ingredients/reducer";
 import { shallowEqual, useSelector } from "react-redux";
+import { ItemTypes } from "../../../../utils/item-types";
 
 export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
   const itemIds = useSelector(getOrderItemIds, shallowEqual);
@@ -13,7 +14,7 @@ export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
   const dispatch = useAppDispatch();
   const { _id: id  } = props.item;
   const [, dragRef] = useDrag(() => ({
-    type: "item",
+    type: ItemTypes.Ingredient,
     item: { id }
   }));
 

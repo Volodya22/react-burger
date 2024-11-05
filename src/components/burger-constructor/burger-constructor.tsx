@@ -1,14 +1,15 @@
-import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './burger-constructor.module.scss'
 import { BurgerConstructorTotal } from "./burger-constructor-total/burger-constructor-total"
 import Modal from "../modals/modal/modal"
 import { OrderDetails } from "../modals/order-details/order-details"
 import { useSelector } from "react-redux"
-import { addIngredient, clearConstructor, deleteIngredient, getBun, getConstructorIngredients } from "../../services/ingredients/reducer"
+import { addIngredient, clearConstructor, getBun, getConstructorIngredients } from "../../services/ingredients/reducer"
 import { useDrop } from "react-dnd"
 import { useAppDispatch } from "../../services/store"
 import { clearOrder, getOrder } from "../../services/orders/reducer"
-import { ConstructorBurgerIngredient } from "../../models"
+import { BurgerConstructorItem } from "./burger-constructor-item/burger-constructor-item"
+import { ItemTypes } from "../../utils/item-types"
 
 export const BurgerConstructor = () => {
   const bun = useSelector(getBun);
@@ -17,7 +18,7 @@ export const BurgerConstructor = () => {
   const dispatch = useAppDispatch();
 
   const [, dropTarget] = useDrop({
-    accept: "item",
+    accept: ItemTypes.Ingredient,
     drop(itemId: { id: string }) {
       dispatch(addIngredient(itemId));
     }
@@ -26,10 +27,6 @@ export const BurgerConstructor = () => {
   const toggle = () => {
     dispatch(clearConstructor());
     dispatch(clearOrder());
-  }
-
-  const onDelete = (item: ConstructorBurgerIngredient) => {
-    dispatch(deleteIngredient(item));
   }
   
   return (
@@ -54,16 +51,8 @@ export const BurgerConstructor = () => {
         </div>
         <div className={styles.items}>
         {
-          ingredients && ingredients.length > 0 ? ingredients.map(x => (
-            <div key={x.itemId} className={styles.item}>
-              <DragIcon className="pr-2" type="primary" />
-              <ConstructorElement
-                text={x.name}
-                price={x.price}
-                thumbnail={x.image}
-                handleClose={() => onDelete(x)}
-              />
-            </div>
+          ingredients && ingredients.length > 0 ? ingredients.map((x, index) => (
+            <BurgerConstructorItem item={x} index={index} key={x.itemId} />
           )) : (
             <div className={styles.emtpyIngredient}>
               <p className={styles.centered}>Добавьте ингредиент</p>

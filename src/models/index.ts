@@ -82,3 +82,8 @@ export type OrderState = {
   order: Order | null;
   isLoading: boolean;
 }
+
+export type MoveItemInfo = {
+  fromIndex: number;
+  toIndex: number;
+}
