@@ -1,17 +1,17 @@
 import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './burger-constructor-total.module.scss'
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual } from "react-redux";
 import { getBun, getConstructorIngredients, getOrderItemIds } from "../../../services/ingredients/reducer";
 import { useMemo } from "react";
-import { useAppDispatch } from "../../../services/store";
+import { useAppDispatch, useAppSelector } from "../../../services/store";
 import { createOrder } from "../../../services/orders/actions";
 import { isOrderLoading } from "../../../services/orders/reducer";
 
 export const BurgerConstructorTotal = () => {
-  const bun = useSelector(getBun);
-  const ingredients = useSelector(getConstructorIngredients);
-  const isLoading = useSelector(isOrderLoading);
-  const itemIds = useSelector(getOrderItemIds, shallowEqual);
+  const bun = useAppSelector(getBun);
+  const ingredients = useAppSelector(getConstructorIngredients);
+  const isLoading = useAppSelector(isOrderLoading);
+  const itemIds = useAppSelector(getOrderItemIds, shallowEqual);
   const dispatch = useAppDispatch();
 
   const getPrice = useMemo(() => {
@@ -28,9 +28,15 @@ export const BurgerConstructorTotal = () => {
         <p className="text text_type_digits-medium pr-2">{getPrice}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <Button htmlType="button" type="primary" size="large" onClick={createNewOrder} disabled={!bun || ingredients.length === 0 || isLoading}>
-        Оформить заказ
-      </Button>
+      {
+        isLoading ? (
+          <p>Обработка заказа...</p>
+        ) : (
+          <Button htmlType="button" type="primary" size="large" onClick={createNewOrder} disabled={!bun || ingredients.length === 0}>
+            Оформить заказ
+          </Button>
+        )
+      }      
     </div>
   );
 }

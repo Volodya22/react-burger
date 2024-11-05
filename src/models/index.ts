@@ -64,11 +64,14 @@ export type IngredientsState = {
   isLoading: boolean;
 }
 
+export type IngredientsRequestResult = {
+  data: BurgerIngredient[]
+} & ApiResponse
+
 export type Order = {
   name: string;
   order: OrderData;
-  success: boolean;
-}
+} & ApiResponse
 
 export type OrderData = {
   number: number;
@@ -86,4 +89,8 @@ export type OrderState = {
 export type MoveItemInfo = {
   fromIndex: number;
   toIndex: number;
+}
+
+export type ApiResponse = {
+  success: boolean;
 }

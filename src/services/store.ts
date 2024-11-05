@@ -1,6 +1,6 @@
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { ingredientsSlice } from "./ingredients/reducer";
-import { useDispatch } from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { orderSlice } from "./orders/reducer";
 
 const rootReducer = combineSlices(ingredientsSlice, orderSlice);
@@ -14,4 +14,8 @@ export const createStore = () => {
 }
 
 export type AppDispatch = typeof store.dispatch
+export type AppStore = typeof store
+export type RootState = ReturnType<AppStore['getState']>
+
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

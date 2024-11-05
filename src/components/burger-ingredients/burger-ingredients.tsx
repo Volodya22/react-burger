@@ -5,14 +5,13 @@ import { BurgerIngredientTab } from './burger-ingredient-tab/burger-ingredient-t
 import Modal from "../modals/modal/modal"
 import { IngredientDetails } from "../modals/ingredient-details/ingredient-details"
 import { IngredientTab } from "../../models"
-import { useSelector } from "react-redux"
 import { getAllIngredients, getSelectedItem, isDataLoading, selectIngredient } from "../../services/ingredients/reducer"
-import { useAppDispatch } from "../../services/store"
+import { useAppDispatch, useAppSelector } from "../../services/store"
 
 export const BurgerIngredients = () => {
-  const data = useSelector(getAllIngredients);
-  const selectedItem = useSelector(getSelectedItem);
-  const isLoading = useSelector(isDataLoading);
+  const data = useAppSelector(getAllIngredients);
+  const selectedItem = useAppSelector(getSelectedItem);
+  const isLoading = useAppSelector(isDataLoading);
   const dispatch = useAppDispatch();
 
   const tabsHeaderRef = useRef<HTMLDivElement>(null);

@@ -2,14 +2,14 @@ import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-c
 import styles from './burger-ingredient-item.module.scss'
 import { BurgerIngredientItemProps } from "../../../../models";
 import { useDrag } from "react-dnd";
-import { useAppDispatch } from "../../../../services/store";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { useCallback } from "react";
 import { getOrderItemIds, selectIngredient } from "../../../../services/ingredients/reducer";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual } from "react-redux";
 import { ItemTypes } from "../../../../utils/item-types";
 
 export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
-  const itemIds = useSelector(getOrderItemIds, shallowEqual);
+  const itemIds = useAppSelector(getOrderItemIds, shallowEqual);
 
   const dispatch = useAppDispatch();
   const { _id: id  } = props.item;

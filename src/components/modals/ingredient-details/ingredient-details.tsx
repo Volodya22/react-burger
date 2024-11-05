@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux';
 import { IngredientDetailsInfo } from './ingredient-details-info/ingredient-details-info';
 import styles from './ingredient-details.module.scss'
 import { getSelectedItem } from '../../../services/ingredients/reducer';
+import { useAppSelector } from '../../../services/store';
 
 export const IngredientDetails = () => {
-  const item = useSelector(getSelectedItem);
+  const item = useAppSelector(getSelectedItem);
 
   return (
     item &&

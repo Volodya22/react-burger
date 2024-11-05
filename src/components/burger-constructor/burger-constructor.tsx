@@ -3,18 +3,17 @@ import styles from './burger-constructor.module.scss'
 import { BurgerConstructorTotal } from "./burger-constructor-total/burger-constructor-total"
 import Modal from "../modals/modal/modal"
 import { OrderDetails } from "../modals/order-details/order-details"
-import { useSelector } from "react-redux"
 import { addIngredient, clearConstructor, getBun, getConstructorIngredients } from "../../services/ingredients/reducer"
 import { useDrop } from "react-dnd"
-import { useAppDispatch } from "../../services/store"
+import { useAppDispatch, useAppSelector } from "../../services/store"
 import { clearOrder, getOrder } from "../../services/orders/reducer"
 import { BurgerConstructorItem } from "./burger-constructor-item/burger-constructor-item"
 import { ItemTypes } from "../../utils/item-types"
 
 export const BurgerConstructor = () => {
-  const bun = useSelector(getBun);
-  const ingredients = useSelector(getConstructorIngredients);
-  const order = useSelector(getOrder);
+  const bun = useAppSelector(getBun);
+  const ingredients = useAppSelector(getConstructorIngredients);
+  const order = useAppSelector(getOrder);
   const dispatch = useAppDispatch();
 
   const [, dropTarget] = useDrop({
@@ -38,7 +37,7 @@ export const BurgerConstructor = () => {
               <ConstructorElement
                 type="top"
                 isLocked={true}
-                text={bun.name}
+                text={`${bun.name} (верх)`}
                 price={bun.price}
                 thumbnail={bun.image}
               />
@@ -66,7 +65,7 @@ export const BurgerConstructor = () => {
               <ConstructorElement
                 type="bottom"
                 isLocked={true}
-                text={bun.name}
+                text={`${bun.name} (низ)`}
                 price={bun.price}
                 thumbnail={bun.image}
               />
