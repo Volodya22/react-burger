@@ -1,10 +1,29 @@
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './burger-ingredient-item.module.scss'
 import { BurgerIngredientItemProps } from "../../../../models";
+import { useDrag } from "react-dnd";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { useCallback } from "react";
+import { getOrderItemIds, selectIngredient } from "../../../../services/ingredients/reducer";
+import { shallowEqual } from "react-redux";
+import { ItemTypes } from "../../../../utils/item-types";
 
 export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
+  const itemIds = useAppSelector(getOrderItemIds, shallowEqual);
+
+  const dispatch = useAppDispatch();
+  const { _id: id  } = props.item;
+  const [, dragRef] = useDrag(() => ({
+    type: ItemTypes.Ingredient,
+    item: { id }
+  }));
+
+  const handleClick = useCallback(() => {
+    dispatch(selectIngredient(props.item))
+  }, [props.item])
+
   return (
-    <div className={styles.itemContainer} onClick={props.onClick}>
+    <div className={styles.itemContainer} onClick={handleClick} ref={dragRef}>
       <div className={styles.imageContainer}>
         <img src={props.item.image} alt={props.item.name} />
       </div>
@@ -15,7 +34,7 @@ export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
       <div className={styles.name}>
         <p className={styles.nameText}>{props.item.name}</p>
       </div>
-      { props.item.price % 5 === 0 && <Counter count={1} size="default" extraClass="m-1" /> }
+      { itemIds.some(x => x === props.item._id) && <Counter count={itemIds.filter(x => x === props.item._id).length} size="default" extraClass="m-1" /> }
     </div>
   );
 };

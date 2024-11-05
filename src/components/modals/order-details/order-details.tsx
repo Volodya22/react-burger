@@ -3,11 +3,15 @@ import layer1 from '../../../images/Vector 1.svg'
 import layer2 from '../../../images/Vector 2.svg'
 import layer3 from '../../../images/Vector 3.svg'
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { getOrder } from '../../../services/orders/reducer'
+import { useAppSelector } from '../../../services/store'
 
 export const OrderDetails = () => {
+  const order = useAppSelector(getOrder);
+
   return (
     <div className={styles.orderData}>
-      <p className={styles.bigText}>034536</p>
+      <p className={styles.bigText}>{order!.order.number}</p>
       <p className={styles.text}>идентификатор заказа</p>
       <div className={styles.check}>
         <img src={layer1} className={styles.layer1} alt='Анимация успешного заказа' />
