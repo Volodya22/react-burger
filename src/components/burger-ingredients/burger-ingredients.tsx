@@ -1,39 +1,64 @@
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components"
-import React, { useCallback, useEffect } from "react"
+import React, { useCallback, useRef } from "react"
 import styles from './burger-ingredients.module.scss'
 import { BurgerIngredientTab } from './burger-ingredient-tab/burger-ingredient-tab'
 import Modal from "../modals/modal/modal"
-import useModal from "../../hooks/use-modal"
 import { IngredientDetails } from "../modals/ingredient-details/ingredient-details"
-import { BurgerIngredient, IngredientTab } from "../../models"
+import { IngredientTab } from "../../models"
+import { useSelector } from "react-redux"
+import { getAllIngredients, getSelectedItem, isDataLoading, selectIngredient } from "../../services/ingredients/reducer"
+import { useAppDispatch } from "../../services/store"
 
-export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
+export const BurgerIngredients = () => {
+  const data = useSelector(getAllIngredients);
+  const selectedItem = useSelector(getSelectedItem);
+  const isLoading = useSelector(isDataLoading);
+  const dispatch = useAppDispatch();
+
+  const tabsHeaderRef = useRef<HTMLDivElement>(null);
+  const tabsRefs = [useRef<HTMLHeadingElement>(null), useRef<HTMLHeadingElement>(null), useRef<HTMLHeadingElement>(null)]
+
   const [current, setCurrent] = React.useState<string>('buns');
-  const [currentItem, setCurrentItem] = React.useState<BurgerIngredient | null>(null);
-  const { isOpen, toggle } = useModal();
 
-  const selectItem = useCallback((item: BurgerIngredient) => {
-    setCurrentItem(item);
-    toggle();
-  }, [setCurrentItem, toggle]);
+  const toggle = () => {
+    dispatch(selectIngredient(null));
+  }
+
+  const onScroll = useCallback(() => {
+    if (!tabsHeaderRef.current && tabsRefs.some(x => !x.current)) {
+      return;
+    }
+
+    const headerBottom = tabsHeaderRef.current!.getBoundingClientRect().bottom;
+    const tabsData = tabsRefs.map(x => Math.abs(headerBottom - x.current!.getBoundingClientRect().top));
+
+    setCurrent(groups[tabsData.indexOf(Math.min(...tabsData))].tabType);
+  }, [data])
 
   const groups: IngredientTab[] = [{
     name: "Булки",
     type: "bun",
+    tabType: "buns"
   }, {
     name: "Соусы",
     type: "sauce",
+    tabType: "sauces"
   }, {
     name: "Начинки",
     type: "main",
+    tabType: "fillings"
   }];
+
+  if (isLoading) {
+    return (<p>Загрузка...</p>)
+  }
 
   return (
     <div className={styles.ingredientContainer}>
       <div className={styles.header}>
         <p className="text text_type_main-large">Соберите бургер</p>
       </div>
-      <div className={styles.tabContainer}>
+      <div className={styles.tabContainer} ref={tabsHeaderRef}>
         <Tab value="buns" active={current === 'buns'} onClick={setCurrent}>
           Булки
         </Tab>
@@ -44,15 +69,15 @@ export const BurgerIngredients = (props: { data: BurgerIngredient[] }) => {
           Начинки
         </Tab>
       </div>
-      <div className={styles.tab}>
-        { props.data && props.data.length > 0 && groups.map(x => (
-          <BurgerIngredientTab key={x.name} items={props.data.filter(c => c.type === x.type)} name={x.name} onSelect={selectItem} />
+      <div className={styles.tab} onScroll={onScroll}>
+        { data && data.length > 0 && groups.map((x, index) => (
+          <BurgerIngredientTab key={x.name} items={data.filter(c => c.type === x.type)} name={x.name} innerRef={tabsRefs[index]} />
         ))}        
       </div>
       {
-        isOpen &&
+        selectedItem &&
         <Modal wrapperId="modals" toggle={toggle}>
-          { currentItem && <IngredientDetails item={currentItem} /> }
+          <IngredientDetails />
         </Modal>
       }      
     </div>

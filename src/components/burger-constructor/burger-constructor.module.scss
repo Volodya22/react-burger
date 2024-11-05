@@ -16,3 +16,28 @@
   gap: 10px;
   margin-top: 100px;
 }
+
+.centered {
+  text-align: center;
+  margin: 12px 0;
+}
+
+.constructor-element {
+  width: 536px;
+}
+
+.emptyBunTop {
+  composes: constructor-element constructor-element_pos_top from global;
+}
+
+.emptyBunBottom {
+  composes: constructor-element constructor-element_pos_bottom from global;
+}
+
+.emtpyIngredient {
+  composes: ml-8 constructor-element from global;
+}
+
+.emptyBunTop, .emptyBunBottom, .emtpyIngredient {
+  width: 536px;
+}

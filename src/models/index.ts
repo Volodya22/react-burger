@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode, RefObject } from "react"
 
 export type ReactPortalProps = {
   children?: ReactNode,
@@ -24,15 +24,18 @@ export type BurgerIngredient = {
   _id: string;
 }
 
+export type ConstructorBurgerIngredient = {
+  itemId: string;
+} & BurgerIngredient
+
 export type BurgerIngredientTabProps = {
   items: BurgerIngredient[];
   name: string;
-  onSelect: (item: BurgerIngredient) => void;
+  innerRef: RefObject<HTMLHeadingElement>;
 }
 
 export type BurgerIngredientItemProps = {
   item: BurgerIngredient;
-  onClick: () => void;
 }
 
 export type ModalOverlayProps = {
@@ -48,4 +51,34 @@ export type IngredientDetailsInfoProps = {
 export type IngredientTab = {
   name: string;
   type: string;
-};
+  tabType: string;
+}
+
+export type IngredientsState = {
+  ingredients: BurgerIngredient[],
+  constructorIngredients: {
+    bun: ConstructorBurgerIngredient | null,
+    ingredients: ConstructorBurgerIngredient[]
+  },
+  selectedIngredient: BurgerIngredient | null,
+  isLoading: boolean;
+}
+
+export type Order = {
+  name: string;
+  order: OrderData;
+  success: boolean;
+}
+
+export type OrderData = {
+  number: number;
+}
+
+export type OrderRequest = {
+  ingredients: string[]
+}
+
+export type OrderState = {
+  order: Order | null;
+  isLoading: boolean;
+}
