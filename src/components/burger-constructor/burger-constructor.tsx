@@ -58,7 +58,7 @@ export const BurgerConstructor = () => {
             </div>
           )
         }
-        </div>        
+        </div>
         <div className="ml-8">
         {
             bun ? (
@@ -74,7 +74,7 @@ export const BurgerConstructor = () => {
                 <p className={styles.centered}>Добавьте булочку</p>
               </div>
             )
-          }   
+          }
         </div>
       </div>
       <BurgerConstructorTotal />
@@ -83,7 +83,7 @@ export const BurgerConstructor = () => {
         <Modal wrapperId="modals" toggle={toggle}>
           <OrderDetails />
         </Modal>
-      }      
+      }
     </div>
   )
 };

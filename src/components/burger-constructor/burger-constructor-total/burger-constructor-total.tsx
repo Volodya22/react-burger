@@ -6,20 +6,30 @@ import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../services/store";
 import { createOrder } from "../../../services/orders/actions";
 import { isOrderLoading } from "../../../services/orders/reducer";
+import { userData } from "../../../services/auth/reducer";
+import { useNavigate } from "react-router";
 
 export const BurgerConstructorTotal = () => {
   const bun = useAppSelector(getBun);
   const ingredients = useAppSelector(getConstructorIngredients);
   const isLoading = useAppSelector(isOrderLoading);
   const itemIds = useAppSelector(getOrderItemIds, shallowEqual);
+  const user = useAppSelector(userData)
+
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate()
 
   const getPrice = useMemo(() => {
     return (bun?.price ?? 0) * 2 + ingredients.reduce((prev, cur) => { return prev + cur.price; }, 0);
   }, [bun, ingredients]);
 
   const createNewOrder = () => {
-    dispatch(createOrder(itemIds));
+    if (user) {
+      dispatch(createOrder(itemIds));
+    } else {
+      navigate('/login', { replace: true });
+    }
   }
 
   return (
@@ -36,7 +46,7 @@ export const BurgerConstructorTotal = () => {
             Оформить заказ
           </Button>
         )
-      }      
+      }
     </div>
   );
 }

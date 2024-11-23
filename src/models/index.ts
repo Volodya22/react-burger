@@ -94,3 +94,38 @@ export type MoveItemInfo = {
 export type ApiResponse = {
   success: boolean;
 }
+
+export type AuthResponse = {
+  accessToken: string;
+  refreshToken: string;
+  user: UserData;
+} & ApiResponse
+
+export type UserData = {
+  email: string;
+  name: string;
+}
+
+export type GetUserResponse = {
+  user: UserData;
+} & ApiResponse
+
+export type AuthState = {
+  user: UserData | null;
+  isLoading: boolean;
+  isInitialized: boolean;
+}
+
+export type LoginData = {
+  email: string;
+  password: string;
+}
+
+export type UserFullData = {
+  password: string
+} & UserData
+
+export type ResetPasswordData = {
+  password: string;
+  token: string;
+}
