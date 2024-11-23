@@ -35,36 +35,38 @@ export const ProfilePage = () => {
   
   return (
     <div>
-      <Input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder='Имя'
-        icon={'EditIcon'}
-      />
-      <EmailInput
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-        name={'email'}
-        isIcon={true}
-        extraClass="mt-6"
-      />
-      <PasswordInput
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-        name={'password'}
-        extraClass="mt-6"
-        icon={'EditIcon'}
-      />
-      {isFormChanged && (
-        <div className="mt-6">
-          <Button type='primary' size='medium' htmlType='submit' onClick={handleSubmit}>
-            Сохранить
-          </Button>
-          <Button type='secondary' htmlType='button' size='medium' onClick={handleCancel}>
-            Отменить
-          </Button>
-        </div>
-      )}
+      <form onSubmit={handleSubmit}>
+        <Input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder='Имя'
+          icon={'EditIcon'}
+        />
+        <EmailInput
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          name={'email'}
+          isIcon={true}
+          extraClass="mt-6"
+        />
+        <PasswordInput
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          name={'password'}
+          extraClass="mt-6"
+          icon={'EditIcon'}
+        />
+        {isFormChanged && (
+          <div className="mt-6">
+            <Button type='primary' size='medium' htmlType='submit' onClick={handleSubmit}>
+              Сохранить
+            </Button>
+            <Button type='secondary' htmlType='button' size='medium' onClick={handleCancel}>
+              Отменить
+            </Button>
+          </div>
+        )}
+      </form>
     </div>
   )
 }

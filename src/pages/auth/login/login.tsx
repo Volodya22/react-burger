@@ -1,5 +1,5 @@
 import { Button, EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useState } from 'react'
+import { SyntheticEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContainer } from '../auth-container/auth-container'
 import { useAppDispatch } from '../../../services/store'
@@ -9,9 +9,11 @@ export const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
-  const handleLogin = () => {
+  const handleLogin = (e: SyntheticEvent) => {
+    e.preventDefault()
+
     dispatch(loginAction({
       email, password
     }))
@@ -19,22 +21,24 @@ export const LoginPage = () => {
 
   return (
     <AuthContainer title='Вход'>
-      <EmailInput
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-        name={'email'}
-        isIcon={false}
-        extraClass="mt-6"
-      />
-      <PasswordInput
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-        name={'password'}
-        extraClass="mt-6"
-      />
-      <Button htmlType="button" type="primary" size="medium" extraClass='mt-6 mb-20' onClick={handleLogin}>
-        Войти
-      </Button>
+      <form onSubmit={handleLogin}>
+        <EmailInput
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          name={'email'}
+          isIcon={false}
+          extraClass="mt-6"
+        />
+        <PasswordInput
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          name={'password'}
+          extraClass="mt-6"
+        />
+        <Button htmlType="submit" type="primary" size="medium" extraClass='mt-6 mb-20' onClick={handleLogin}>
+          Войти
+        </Button>
+      </form>
       <p className="text text_type_main-default mb-4">
         Вы - новый пользователь? <Link to="/register">Зарегистрироваться</Link>
       </p>
