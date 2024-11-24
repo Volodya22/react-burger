@@ -1,7 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
 .itemData {
   margin: 40px 0 60px 0;
   display: flex;
   flex-flow: column;
+  max-width: 600px;
 }
 
 .title {

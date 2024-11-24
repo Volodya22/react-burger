@@ -7,9 +7,11 @@ import { useCallback } from "react";
 import { getOrderItemIds, selectIngredient } from "../../../../services/ingredients/reducer";
 import { shallowEqual } from "react-redux";
 import { ItemTypes } from "../../../../utils/item-types";
+import { Link, useLocation } from "react-router-dom";
 
 export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
   const itemIds = useAppSelector(getOrderItemIds, shallowEqual);
+  const location = useLocation();
 
   const dispatch = useAppDispatch();
   const { _id: id  } = props.item;
@@ -23,18 +25,20 @@ export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
   }, [props.item])
 
   return (
-    <div className={styles.itemContainer} onClick={handleClick} ref={dragRef}>
-      <div className={styles.imageContainer}>
-        <img src={props.item.image} alt={props.item.name} />
+    <Link to={`/ingredients/${id}`} state={{ backgroundLocation: location }}>
+      <div className={styles.itemContainer} onClick={handleClick} ref={dragRef}>
+        <div className={styles.imageContainer}>
+          <img src={props.item.image} alt={props.item.name} />
+        </div>
+        <div className={styles.price}>
+          <span className="text text_type_main-default mr-2">{props.item.price}</span>
+          <CurrencyIcon type="primary" />
+        </div>
+        <div className={styles.name}>
+          <p className={styles.nameText}>{props.item.name}</p>
+        </div>
+        { itemIds.some(x => x === props.item._id) && <Counter count={itemIds.filter(x => x === props.item._id).length} size="default" extraClass="m-1" /> }
       </div>
-      <div className={styles.price}>
-        <span className="text text_type_main-default mr-2">{props.item.price}</span>
-        <CurrencyIcon type="primary" />
-      </div>
-      <div className={styles.name}>
-        <p className={styles.nameText}>{props.item.name}</p>
-      </div>
-      { itemIds.some(x => x === props.item._id) && <Counter count={itemIds.filter(x => x === props.item._id).length} size="default" extraClass="m-1" /> }
-    </div>
+    </Link>
   );
 };
