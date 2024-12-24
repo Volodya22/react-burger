@@ -1,12 +1,11 @@
-import { useSelector } from "react-redux";
 import { getFeedOrders, getFeedTotal, getFeedTotalToday } from "../../../services/feed/reducer";
 import styles from './feed-total.module.scss'
-import { useMemo } from "react";
+import { useAppSelector } from "../../../services/store";
 
 export const FeedTotal = () => {
-  const orders = useSelector(getFeedOrders)
-  const total = useSelector(getFeedTotal)
-  const totalToday = useSelector(getFeedTotalToday)
+  const orders = useAppSelector(getFeedOrders)
+  const total = useAppSelector(getFeedTotal)
+  const totalToday = useAppSelector(getFeedTotalToday)
 
   const readyOrders = orders.filter((order) => order.status === 'done').map((order) => order.number).slice(0, 10)
   const inProgressOrders = orders.filter((order) => order.status === 'pending').map((order) => order.number).slice(0, 10)
