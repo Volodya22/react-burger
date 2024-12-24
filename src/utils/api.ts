@@ -1,4 +1,4 @@
-import { ApiResponse, BurgerIngredient, IngredientsRequestResult, Order, OrderRequest, AuthResponse, GetUserResponse, LoginData, UserFullData, ResetPasswordData } from "../models";
+import { ApiResponse, BurgerIngredient, IngredientsRequestResult, Order, OrderRequest, AuthResponse, GetUserResponse, LoginData, UserFullData, ResetPasswordData, OrderResponse } from "../models";
 import { AccessTokenKey, RefreshTokenKey } from "../services/auth/reducer";
 
 const ApiUrl: string = "https://norma.nomoreparties.space/api/";
@@ -144,5 +144,14 @@ export const updateUser = async (data: UserFullData): Promise<GetUserResponse> =
       "Authorization": localStorage.getItem(AccessTokenKey)!
     },
     body: JSON.stringify(data)
+  })
+}
+
+export const getOrder = async (number: string): Promise<OrderResponse> => {
+  return await fetchWithRefresh<OrderResponse>(`orders/${number}`, {
+    method: "GET",
+    headers: {
+      "Authorization": localStorage.getItem(AccessTokenKey)!
+    }
   })
 }

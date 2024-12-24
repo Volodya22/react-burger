@@ -3,7 +3,7 @@ import { SyntheticEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContainer } from '../auth-container/auth-container'
 import { useAppDispatch } from '../../../services/store'
-import { getUserAction, registerAction } from '../../../services/auth/actions'
+import { registerAction } from '../../../services/auth/actions'
 
 export const RegisterPage = () => {
   const [email, setEmail] = useState('')
