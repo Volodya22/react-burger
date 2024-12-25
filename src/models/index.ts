@@ -62,6 +62,7 @@ export type IngredientsState = {
   },
   selectedIngredient: BurgerIngredient | null,
   isLoading: boolean;
+  ingredientsMap: { [x: string]: BurgerIngredient };
 }
 
 export type IngredientsRequestResult = {
@@ -75,6 +76,13 @@ export type Order = {
 
 export type OrderData = {
   number: number;
+  name?: string;
+  createdAt: string;
+  updatedAt: string;
+  status: string;
+  _id: string;
+  price?: number;
+  ingredients: string[]
 }
 
 export type OrderRequest = {
@@ -128,4 +136,25 @@ export type UserFullData = {
 export type ResetPasswordData = {
   password: string;
   token: string;
+}
+
+export type FeedState = {
+  orders: OrderData[],
+  total: number,
+  totalToday: number
+}
+
+export type OrdersHistoryState = {
+  historyOrders: OrderData[],
+  historyTotal: number,
+  historyTotalToday: number
+}
+
+export type OrderProps = {
+  item: OrderData;
+  path: string;
+}
+
+export type OrderResponse = {
+  orders: OrderData[];
 }

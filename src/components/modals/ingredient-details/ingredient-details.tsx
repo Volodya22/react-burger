@@ -5,10 +5,6 @@ import { useAppSelector } from '../../../services/store';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 
-type IngredientDetailsProps = {
-  locationState: { background: Location };
-}
-
 export const IngredientDetails = () => {
   const { id } = useParams<{ id: string }>();
   const items = useAppSelector(getAllIngredients);

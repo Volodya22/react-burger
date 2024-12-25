@@ -9,7 +9,14 @@ export const PersonProfilePage = () => {
 
   return (
     <div className={styles.container}>
-      <ProfileMenu />
+      <div className={styles.menu}>
+        <ProfileMenu />
+        { url.pathname !== "/profile" && (
+          <p className={styles.note}>
+            В этом разделе вы можете просмотреть свою историю заказов
+          </p>
+        )}
+      </div>
       {
         (url.pathname === "/profile" ? <ProfilePage /> : <OrderHistoryPage />)
       }

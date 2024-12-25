@@ -1,4 +1,4 @@
-import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { SyntheticEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContainer } from '../auth-container/auth-container'

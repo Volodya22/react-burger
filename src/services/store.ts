@@ -1,13 +1,25 @@
-import { combineSlices, configureStore } from "@reduxjs/toolkit";
+import { combineSlices, configureStore, Tuple } from "@reduxjs/toolkit";
 import { ingredientsSlice } from "./ingredients/reducer";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { orderSlice } from "./orders/reducer";
 import { authSlice } from "./auth/reducer";
+import { socketMiddleware } from "./middleware/socket-middleware";
+import { feedSlice, setFeedData } from "./feed/reducer";
+import { ordersHistorySlice, setOrdersHistoryData } from "./orders-history/reducer";
+import { feedConnect, feedDisconnect } from "./feed/actions";
+import { ordersHistoryConnect, ordersHistoryDisconnect } from "./orders-history/actions";
 
-const rootReducer = combineSlices(ingredientsSlice, orderSlice, authSlice);
+export const WebSocketUrl = 'wss://norma.nomoreparties.space/orders';
+
+const rootReducer = combineSlices(ingredientsSlice, orderSlice, authSlice, feedSlice, ordersHistorySlice);
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      socketMiddleware(`${WebSocketUrl}/all`, feedConnect, feedDisconnect, setFeedData),
+      socketMiddleware(WebSocketUrl, ordersHistoryConnect, ordersHistoryDisconnect, setOrdersHistoryData)
+    )
 })
 
 export const createStore = () => {

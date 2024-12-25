@@ -9,7 +9,8 @@ const initialState: IngredientsState = {
     ingredients: []
   },
   selectedIngredient: null,
-  isLoading: false
+  isLoading: false,
+  ingredientsMap: {}
 }
 
 export const ingredientsSlice = createSlice({
@@ -64,7 +65,8 @@ export const ingredientsSlice = createSlice({
     isDataLoading: state => state.isLoading,
     getOrderItemIds: state => state.constructorIngredients.bun
       ? [state.constructorIngredients.bun._id, ...state.constructorIngredients.ingredients.map(x => x._id), state.constructorIngredients.bun!._id]
-      : state.constructorIngredients.ingredients.map(x => x._id)
+      : state.constructorIngredients.ingredients.map(x => x._id),
+    getIngredientsMap: state => state.ingredientsMap
   },
   extraReducers: (builder) => {
     builder
@@ -73,6 +75,7 @@ export const ingredientsSlice = createSlice({
       })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.ingredients = action.payload;
+        state.ingredientsMap = Object.assign({}, ...action.payload.map((x) => ({[x._id]: x})));
         state.isLoading = false;
       })
       .addCase(getIngredients.rejected, (state) => {
@@ -81,6 +84,6 @@ export const ingredientsSlice = createSlice({
   }
 })
 
-export const { getAllIngredients, getSelectedItem, getBun, getConstructorIngredients, getConstructorData, isDataLoading, getOrderItemIds } = ingredientsSlice.selectors;
+export const { getAllIngredients, getSelectedItem, getBun, getConstructorIngredients, getConstructorData, isDataLoading, getOrderItemIds, getIngredientsMap } = ingredientsSlice.selectors;
 
 export const { selectIngredient, addIngredient, deleteIngredient, clearConstructor, moveIngredient } = ingredientsSlice.actions;

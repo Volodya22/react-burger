@@ -2,19 +2,13 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components"
 import React, { useCallback, useRef } from "react"
 import styles from './burger-ingredients.module.scss'
 import { BurgerIngredientTab } from './burger-ingredient-tab/burger-ingredient-tab'
-import Modal from "../modals/modal/modal"
-import { IngredientDetails } from "../modals/ingredient-details/ingredient-details"
 import { IngredientTab } from "../../models"
-import { getAllIngredients, getSelectedItem, isDataLoading, selectIngredient } from "../../services/ingredients/reducer"
-import { useAppDispatch, useAppSelector } from "../../services/store"
-import { useNavigate } from "react-router"
+import { getAllIngredients, isDataLoading } from "../../services/ingredients/reducer"
+import { useAppSelector } from "../../services/store"
 
 export const BurgerIngredients = () => {
   const data = useAppSelector(getAllIngredients);
-  const selectedItem = useAppSelector(getSelectedItem);
   const isLoading = useAppSelector(isDataLoading);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate()
 
   const tabsHeaderRef = useRef<HTMLDivElement>(null);
   const tabsRefs = [useRef<HTMLHeadingElement>(null), useRef<HTMLHeadingElement>(null), useRef<HTMLHeadingElement>(null)]

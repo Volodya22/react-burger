@@ -24,10 +24,16 @@ export const AppHeader = () => {
           </NavLink>
         </div>
         <div className={styles.link}>
-          <a href="#">
-            <ListIcon className={styles.icon} type="secondary" />
-            <span className="text text_type_main-default text_color_inactive">Лента заказов</span>
-          </a>
+          <NavLink to="/feed">
+          {
+            ({ isActive }) => (
+              <>
+                <ListIcon className={styles.icon} type={isActive ? 'primary' : 'secondary'} />
+                <span className={`text text_type_main-default ${isActive ? '' : 'text_color_inactive'}`}>Лента заказов</span>
+              </>
+            )
+          }
+          </NavLink>
         </div>
       </div>
       <div className={styles.logo}>
