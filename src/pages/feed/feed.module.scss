@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  gap: 60px;
+  margin-top: 24px;
+}
+
+.ordersContainer {
+  width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}

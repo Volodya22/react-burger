@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.status {
+  display: flex;
+  gap: 36px;
+}
+
+.statusColumn {
+  width: 272px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.orderNumbers {
+  display: flex;
+  flex-flow: column wrap;
+  height: 220px;
+}
+
+.orderNumberReady {
+  composes: text text_type_digits-medium from global;
+  color: #00CCCC;
+  margin-bottom: 8px;
+  flex: 0 1 calc(20% - 8px);
+}
+
+.orderNumber {
+  composes: text text_type_digits-medium from global;
+  margin-bottom: 8px;
+  flex: 0 1 calc(20% - 8px);
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+}
