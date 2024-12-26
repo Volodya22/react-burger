@@ -15,6 +15,14 @@ module.exports = {
 			: 'static/scripts/[name].js', // имя нашего бандла
 		publicPath: '/',
 	},
+	globals: {
+		'ts-jest': {
+				tsconfig: '<rootDir>/test/tsconfig.json',
+		},
+	},
+	transformIgnorePatterns: [
+			"node_modules/(?!troublesome-dependency/.*)",
+	],
 	//Нужно помочь вебпаку научится работать с jsx и tsx файлами для этого используют ts loader
 	module: {
 		rules: [

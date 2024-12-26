@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { OrdersHistoryState } from "../../models";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FeedState, OrdersHistoryState } from "../../models";
 
 const initialState: OrdersHistoryState = {
   historyOrders: [],
@@ -11,7 +11,7 @@ export const ordersHistorySlice = createSlice({
   name: 'ordersHistory',
   initialState,
   reducers: {
-    setOrdersHistoryData: (state, action) => {
+    setOrdersHistoryData: (state, action: PayloadAction<FeedState>) => {
       state.historyOrders = action.payload.orders
       state.historyTotal = action.payload.total
       state.historyTotalToday = action.payload.totalToday
