@@ -63,7 +63,7 @@
 		"test": "jest",
 		"prepare": "husky install",
 		"commit": "yarn test && cz",
-		"predeploy": "npm run build && touch dist/.nojekyll",
+		"predeploy": "npm run build",
 		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
