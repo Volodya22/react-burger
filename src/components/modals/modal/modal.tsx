@@ -19,9 +19,11 @@ export default function Modal(props: ModalProps) {
   return (
     <ReactPortal wrapperId={props.wrapperId}>
       <ModalOverlay onClick={props.toggle} />
-      <div className={styles.modalContent}>
+      <div className={styles.modalContent} data-cy='modal'>
         <div className={styles.side}>
-          <CloseIcon type="primary" onClick={props.toggle} />
+          <span  data-cy='modal-close'>
+            <CloseIcon type="primary" onClick={props.toggle} />
+          </span>
         </div>
         <div className={styles.content}>
           {props.children}
