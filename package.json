@@ -64,7 +64,7 @@
 		"prepare": "husky install",
 		"commit": "yarn test && cz",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist"
+		"deploy": "gh-pages -d build"
 	},
 	"dependencies": {
 		"@jest/globals": "^29.7.0",
