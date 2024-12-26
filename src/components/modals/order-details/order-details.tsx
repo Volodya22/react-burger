@@ -11,7 +11,7 @@ export const OrderDetails = () => {
 
   return (
     <div className={styles.orderData}>
-      <p className={styles.bigText}>{order!.order.number}</p>
+      <p className={styles.bigText} data-cy='orderNumber'>{order!.order.number}</p>
       <p className={styles.text}>идентификатор заказа</p>
       <div className={styles.check}>
         <img src={layer1} className={styles.layer1} alt='Анимация успешного заказа' />

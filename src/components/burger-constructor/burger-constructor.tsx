@@ -34,15 +34,18 @@ export const BurgerConstructor = () => {
         <div className="ml-8">
           {
             bun ? (
-              <ConstructorElement
-                type="top"
-                isLocked={true}
-                text={`${bun.name} (верх)`}
-                price={bun.price}
-                thumbnail={bun.image}
-              />
+              <span className={styles.itemContainer} data-cy='bun-top-selected'>
+                <ConstructorElement
+                  type="top"
+                  isLocked={true}
+                  text={`${bun.name} (верх)`}
+                  price={bun.price}
+                  thumbnail={bun.image}
+                />
+              </span>
+              
             ) : (
-              <div className={styles.emptyBunTop}>
+              <div className={styles.emptyBunTop} data-cy='bun-top'>
                 <p className={styles.centered}>Добавьте булочку</p>
               </div>
             )
@@ -51,9 +54,11 @@ export const BurgerConstructor = () => {
         <div className={styles.items}>
         {
           ingredients && ingredients.length > 0 ? ingredients.map((x, index) => (
-            <BurgerConstructorItem item={x} index={index} key={x.itemId} />
+            <span className={styles.itemContainer} data-cy='ingredient-selected'>
+              <BurgerConstructorItem item={x} index={index} key={x.itemId} />
+            </span>
           )) : (
-            <div className={styles.emtpyIngredient}>
+            <div className={styles.emtpyIngredient} data-cy='ingredient'>
               <p className={styles.centered}>Добавьте ингредиент</p>
             </div>
           )
@@ -62,15 +67,17 @@ export const BurgerConstructor = () => {
         <div className="ml-8">
         {
             bun ? (
-              <ConstructorElement
-                type="bottom"
-                isLocked={true}
-                text={`${bun.name} (низ)`}
-                price={bun.price}
-                thumbnail={bun.image}
-              />
+              <span className={styles.itemContainer} data-cy='bun-bottom-selected'>
+                <ConstructorElement
+                  type="bottom"
+                  isLocked={true}
+                  text={`${bun.name} (низ)`}
+                  price={bun.price}
+                  thumbnail={bun.image}
+                />
+              </span>
             ) : (
-              <div className={styles.emptyBunBottom}>
+              <div className={styles.emptyBunBottom} data-cy='bun-bottom'>
                 <p className={styles.centered}>Добавьте булочку</p>
               </div>
             )
