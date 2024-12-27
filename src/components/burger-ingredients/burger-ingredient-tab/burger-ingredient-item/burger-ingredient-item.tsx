@@ -25,7 +25,7 @@ export const BurgerIngredientItem = (props: BurgerIngredientItemProps) => {
   }, [props.item])
 
   return (
-    <Link to={`/ingredients/${id}`} state={{ backgroundLocation: location }}>
+    <Link to={`/ingredients/${id}`} state={{ backgroundLocation: location }} data-cy={id}>
       <div className={styles.itemContainer} onClick={handleClick} ref={dragRef}>
         <div className={styles.imageContainer}>
           <img src={props.item.image} alt={props.item.name} />
