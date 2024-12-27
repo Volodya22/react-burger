@@ -16,8 +16,15 @@ export const socketMiddleware = <T>(
       const { dispatch } = store
 
       if (connectAction.match(action) && (!socket || socket.readyState === WebSocket.CLOSED)) {
-        const token = localStorage.getItem(AccessTokenKey)!.replace('Bearer ', '')
-        const url = `${wsUrl}?token=${token}`
+        let token = localStorage.getItem(AccessTokenKey)
+        let url = ''
+        if (token) {
+          token = token.replace('Bearer ', '')
+          url = `${wsUrl}?token=${token}`
+        } else {
+          url = wsUrl
+        }
+
 
         socket = new WebSocket(url)
 
