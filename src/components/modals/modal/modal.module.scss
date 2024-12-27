@@ -1,0 +1,27 @@
+.modalContent {
+  position: fixed;
+  min-width: 720px;
+  background-color: #1c1c21;
+  color: #fff;
+  display: flex;
+  flex-flow: row-reverse;
+  border-radius: 40px;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.side {
+  margin: 60px 38px;
+  cursor: pointer;
+
+  span {
+    display: block;
+  }
+}
+
+.content {
+  min-width: 520px;
+  margin-left: 100px;
+}
